@@ -1,6 +1,12 @@
 // Standalone elements without their own separate components are styled here
 
 .header {
+  background-image: linear-gradient(to right, #1D5994 , #22965E);
+  color: white;
   font-size: $font-size-l;
   font-weight: bold;
+  height: 7.6rem;
+  line-height: 7.6rem; 
+  text-align: center;
+  vertical-align: middle
 }
