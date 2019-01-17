@@ -1,11 +1,35 @@
 .searchbar {
-  align-content: center;
+  height: $l-size;
+  margin: $s-size 6rem $s-size $s-size;
+  position: relative;
 }
 
 .searchbar__input {
-  width: 90%;
+  border: solid 1px grey;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: $text-color;
+  display: block;
+  font-size: 1.6rem;
+  margin-right: $l-size;
+  padding: 0.8rem;
+  width: 100%;
 }
 
 .searchbar__button {
-  width: 10%;
+  background-color: $green;
+  border-radius: 3px;
+  display: block;
+  left: 100%; 
+  margin-left: $s-size; 
+  max-height: 4444rem;
+  max-width: $l-size;
+  padding: 0.2rem;
+  position: absolute;
+  top: 0;
+  width: 50px;
+
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(214, 214, 214, 1);
+  -moz-box-shadow: 2px 2px 5px 1px rgba(214, 214, 214, 1);
+  box-shadow: 2px 2px 5px 1px rgba(214, 214, 214, 1);
 }
