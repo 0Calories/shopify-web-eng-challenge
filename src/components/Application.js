@@ -9,7 +9,9 @@ import lookupData from './../database/data.json';
 export default class Application extends React.Component {
 
   state = {
-    lookupData
+    lookupData,
+    searchResults: undefined,
+    favourites: []
   };
 
   handleSearch = (searchInput) => {
@@ -18,7 +20,8 @@ export default class Application extends React.Component {
     const searchResults = this.state.lookupData.filter((item) => 
       item.keywords.includes(searchInput) || item.title.includes(searchInput)
     );
-    console.log(searchResults);
+
+    this.setState({ searchResults });
   };
 
   render() {
