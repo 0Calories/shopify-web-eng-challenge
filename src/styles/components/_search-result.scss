@@ -1,0 +1,28 @@
+.result-container {
+  display: flex;
+  font-size: 1.1rem;
+  margin: $m-size $xl-size $m-size $s-size;
+}
+
+.result-title {
+  width: 30%;
+}
+
+.result-body {
+  margin-top: -1.1rem;
+  width: 70%;
+
+  li {
+    margin-bottom: $s-size;
+  }
+}
+
+.fa-star {
+  color: $grey;
+  margin-right: 1rem;
+}
+
+.fa-star:hover {
+  color: darken($grey, 30%);
+  cursor: pointer;
+}
