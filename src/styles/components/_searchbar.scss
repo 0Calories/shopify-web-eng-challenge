@@ -1,10 +1,10 @@
-.searchbar {
+.search-bar {
   height: $l-size;
   margin: $s-size 6rem $s-size $s-size;
   position: relative;
 }
 
-.searchbar__input {
+.search-bar__input {
   border: solid 1px grey;
   border-radius: 3px;
   box-sizing: border-box;
@@ -16,7 +16,7 @@
   width: 100%;
 }
 
-.searchbar__button {
+.search-bar__button {
   background-color: $green;
   border-radius: 3px;
   display: block;
