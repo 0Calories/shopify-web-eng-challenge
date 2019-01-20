@@ -8,6 +8,8 @@ export default class SearchBar extends React.Component {
 
   handleSearch = e => {
     e.preventDefault();
+    // Remove focus from the input so autofill suggestions are hidden
+    this.refs.input.blur();
     // Trim the input before performing a search
     const searchInput = this.state.searchInput.trim();
     // Update the searchInput in the state so whitespace is removed from the SearchBar input
@@ -30,6 +32,7 @@ export default class SearchBar extends React.Component {
             name="search" 
             onChange={this.handleChangeSearchInput}
             value={this.state.searchInput}
+            ref="input"
           />
           <input 
             className="search-bar__button" 
