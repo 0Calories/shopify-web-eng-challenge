@@ -38,13 +38,20 @@ export default class Application extends React.Component {
     }
   };
 
+  handleClearSearch = () => {
+    this.setState({ searchResults: []});
+  }
+
   render() {
     return (
       <div>
         <div className="header">
           Toronto Waste Lookup
         </div>
-        <SearchBar onSearch={this.handleSearch} />
+        <SearchBar 
+          onSearch={this.handleSearch} 
+          onClearSearch={this.handleClearSearch}
+        />
         {this.state.searchResults.map((result) => 
             <SearchResult 
               title={result.title}

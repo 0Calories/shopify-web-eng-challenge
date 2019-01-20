@@ -20,6 +20,10 @@ export default class SearchBar extends React.Component {
 
   handleChangeSearchInput = e => {
     this.setState({ searchInput: e.target.value });
+    // Clear search results when the search input is empty
+    if (e.target.value.trim() === '') {
+      this.props.onClearSearch();
+    }
   };
 
   render() {
