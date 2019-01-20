@@ -3,19 +3,25 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
 
-// In my solution, I chose to save the JSON file provided by the Waste Wizard website.
-// The data will be directly parsed, so no need for API calls
-// I'm doing this under the assumption that load time is not the utmost importance for this challenge.
-// To improve load time and performance, I would store the JSON in Firebase instead and retrieve the data from there.
-import lookupData from './../database/data.json'; 
 
 export default class Application extends React.Component {
 
   state = {
-    lookupData,
+    lookupData: undefined,
     searchResults: [],
     favourites: []
   };
+
+  // Grab the JSON data from the Toronto Waste Wizard website before the application loads
+  componentWillMount() {
+    fetch('https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000').then(res => {
+      return res.json();
+    }).then(lookupData => {
+      this.setState({ lookupData });
+    }).catch(err => {
+      console.log(err);
+    });
+  }
 
   handleSearch = (searchInput) => {
     if (searchInput) {
