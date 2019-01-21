@@ -22,6 +22,30 @@ export default class Application extends React.Component {
     }).catch(err => {
       console.log(err);
     });
+
+    // Get the saved favourites from the local storage, if they exist
+    let favouritesJSON = localStorage.getItem('favourites');
+    let favouriteIdsJSON = localStorage.getItem('favouriteIds');
+
+    console.log(favouritesJSON);
+
+    let favourites;
+    let favouriteIds;
+    // Set these variables to empty arrays if they are null
+    if (!favouritesJSON)
+      favourites = [];
+    else
+      favourites = JSON.parse(favouritesJSON);
+    
+    if (!favouriteIdsJSON)
+      favouriteIds = [];
+    else
+      favouriteIds = JSON.parse(favouriteIdsJSON);
+
+    this.setState({
+      favourites,
+      favouriteIds
+    });
   }
 
   handleSearch = searchInput => {
@@ -52,12 +76,19 @@ export default class Application extends React.Component {
       this.setState(prevState => ({
         favourites: [...prevState.favourites, favourite],
         favouriteIds: [...prevState.favouriteIds, favourite.id]
-      }));
+      }), () => {
+        // Store the favourites as a cookie so they can be accessed again when the page is refreshed
+        localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+        localStorage.setItem('favouriteIds', JSON.stringify(this.state.favouriteIds));
+      });
     } else {
       this.setState(prevState => ({
         favourites: [...prevState.favourites, favourite],
         favouriteIds: [...prevState.favouriteIds, favourite.title]
-      }));
+      }), () => {
+        localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+        localStorage.setItem('favouriteIds', JSON.stringify(this.state.favouriteIds));
+      });
     }
   };
 
@@ -78,6 +109,9 @@ export default class Application extends React.Component {
     this.setState({
       favourites,
       favouriteIds
+    }, () => {
+        localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+        localStorage.setItem('favouriteIds', JSON.stringify(this.state.favouriteIds));
     });
   };
 
