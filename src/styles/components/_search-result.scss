@@ -22,7 +22,16 @@
   margin-right: 1rem;
 }
 
+.fa-star--favourite {
+  color: $green;
+}
+
 .fa-star:hover {
   color: darken($grey, 30%);
+  cursor: pointer;
+}
+
+.fa-star--favourite:hover {
+  color: darken($green, 5%);
   cursor: pointer;
 }

@@ -21,11 +21,20 @@ export default class SearchResult extends React.Component {
     }
   }
 
+  handleToggleFavourite = () => {
+    this.setState({ favourite: !this.state.favourite});
+  }
+
   render() {
 
     return (
       <div className="result-container">
-        <i class="fas fa-star"></i>
+        <div className="icon-wrapper">
+          <i
+            className={this.state.favourite ? "fas fa-star fa-star--favourite" : "fas fa-star"}
+            onClick={this.handleToggleFavourite}
+          />
+        </div>
         <div className="result-title">
           
           {this.props.title}
