@@ -5,7 +5,6 @@ const parser = new DOMParser();
 export default class SearchResult extends React.Component {
 
   state = {
-    favourite: false,
     body: ''
   };
 
@@ -16,13 +15,24 @@ export default class SearchResult extends React.Component {
       const bodyHTML = parser.parseFromString(props.body, "text/html");
       
       return {
-        body: bodyHTML.documentElement.textContent
+        body: bodyHTML.documentElement.textContent,
       };
-    }
+    } 
   }
 
   handleToggleFavourite = () => {
-    this.setState({ favourite: !this.state.favourite});
+    const favouriteObject = {
+      title: this.props.title,
+      body: this.props.body,
+      id: this.props.id
+    };
+
+    if (this.props.isFavourite) {
+      this.props.onRemoveFavourite(favouriteObject);
+    } else {
+      this.props.onAddFavourite(favouriteObject);
+    }
+    this.setState({ favourite: !this.props.isFavourite});
   }
 
   render() {
@@ -31,7 +41,7 @@ export default class SearchResult extends React.Component {
       <div className="result-container">
         <div className="icon-wrapper">
           <i
-            className={this.state.favourite ? "fas fa-star fa-star--favourite" : "fas fa-star"}
+            className={this.props.isFavourite ? "fas fa-star fa-star--favourite" : "fas fa-star"}
             onClick={this.handleToggleFavourite}
           />
         </div>
