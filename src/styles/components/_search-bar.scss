@@ -1,5 +1,5 @@
 .search-bar {
-  height: $l-size;
+  height: $m-size;
   margin: $s-size 6rem $s-size $s-size;
   position: relative;
 }
@@ -10,9 +10,9 @@
   box-sizing: border-box;
   color: $text-color;
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   margin-right: $l-size;
-  padding: 0.8rem;
+  padding: 0.4rem;
   width: 100%;
 }
 
@@ -22,8 +22,8 @@
   display: block;
   left: 100%; 
   margin-left: $s-size; 
-  max-height: 4444rem;
-  max-width: $l-size;
+ 
+  max-width: 2.2rem;
   padding: 0.2rem;
   position: absolute;
   top: 0;
@@ -32,4 +32,21 @@
   -webkit-box-shadow: 2px 2px 5px 1px rgba(214, 214, 214, 1);
   -moz-box-shadow: 2px 2px 5px 1px rgba(214, 214, 214, 1);
   box-shadow: 2px 2px 5px 1px rgba(214, 214, 214, 1);
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .search-bar {
+    height: $l-size;
+    font-size: 1.6rem;
+  }
+
+  .search-bar__input {
+    font-size: 1.6rem;
+    padding: 0.8rem;
+  }
+
+  .search-bar__button {
+    max-height: none;
+    max-width: $l-size;
+  }
 }

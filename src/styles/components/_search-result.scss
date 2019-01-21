@@ -1,7 +1,7 @@
 .result-container {
   display: flex;
-  font-size: 1.1rem;
-  margin: $m-size $xl-size $m-size $s-size;
+  font-size: 0.95rem;
+  margin: $m-size $m-size $m-size $s-size;
 }
 
 .result-title {
@@ -34,4 +34,11 @@
 .fa-star--favourite:hover {
   color: darken($green, 5%);
   cursor: pointer;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .result-container {
+    font-size: 1.1rem;
+    margin: $m-size $xl-size $m-size $s-size;
+  }
 }

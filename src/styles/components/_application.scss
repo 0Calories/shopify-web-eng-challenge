@@ -3,7 +3,7 @@
 .header {
   background-image: linear-gradient(to right, $blue , $green);
   color: white;
-  font-size: $font-size-l;
+  font-size: 1.7rem;
   font-weight: bold;
   height: 7.6rem;
   line-height: 7.6rem; 
@@ -13,6 +13,17 @@
 
 .favourites__header {
   color: $green;
+  font-size: 1.4rem;
   font-weight: bold;
   margin: $s-size;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .header {
+    font-size: $font-size-l;
+  }
+
+  .favourites__header {
+    font-size: 2rem;
+  }
 }
