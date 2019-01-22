@@ -10,7 +10,8 @@ export default class Application extends React.Component {
     lookupData: undefined,
     searchResults: [],
     favourites: [],
-    favouriteIds: []
+    favouriteIds: [],
+    pendingSearch: undefined
   };
 
   // Grab the JSON data from the Toronto Waste Wizard website before the application loads
@@ -18,7 +19,11 @@ export default class Application extends React.Component {
     fetch('https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000').then(res => {
       return res.json();
     }).then(lookupData => {
-      this.setState({ lookupData });
+      this.setState({ lookupData }, () => {
+        // Check if there is a pending search and apply it now that the JSON has loaded
+        if (this.state.pendingSearch)
+          this.handleSearch(this.state.pendingSearch);
+      });
     }).catch(err => {
       console.log(err);
     });
@@ -50,13 +55,18 @@ export default class Application extends React.Component {
 
   handleSearch = searchInput => {
     if (searchInput) {
+      // If the user tried to search before the JSON data loaded, set the pendingSearch state variable so it can search when loaded
+      if (!this.state.lookupData) {
+        this.setState({ pendingSearch: searchInput });
+        return;
+      }
       // Use the ES6 filter method on the lookupData.
       // This works by taking all objects where 'searchInput' is found in the 'title' or 'keywords' properties.
       let searchResults = this.state.lookupData.filter((item) =>
         item.keywords.includes(searchInput) || item.title.includes(searchInput)
       );
 
-      this.setState({ searchResults });
+      this.setState({ searchResults, pendingSearch: undefined });
     } else {
       // Clear the searchResults if an empty string was entered
       this.setState({ searchResults: [] });
@@ -126,6 +136,12 @@ export default class Application extends React.Component {
           onSearch={this.handleSearch} 
           onClearSearch={this.handleClearSearch}
         />
+
+        {this.state.pendingSearch && 
+          <div className="loading-wrapper">
+            <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          </div>
+        }
 
         {this.state.searchResults.map((result) => 
             <SearchResult 
